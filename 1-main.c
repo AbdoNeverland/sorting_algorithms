@@ -48,9 +48,6 @@ int main(void)
     if (!list)
         return (1);
     print_list(list);
-    permute(&list, list, list->next);
-print_list(list);
-    return (0);
     printf("\n");
     insertion_sort_list(&list);
     printf("\n");
