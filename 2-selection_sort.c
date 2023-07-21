@@ -2,7 +2,6 @@
 
 /**
  * selection_sort -  selection sort
- *
  * @array: The array
  * @size: Number
  */
