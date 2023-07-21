@@ -1,5 +1,9 @@
 #include "sort.h"
 
+/**
+ * adjustprev - it must be a better way
+ * @list: list
+ **/
 void adjustprev(listint_t **list)
 {
 
@@ -18,31 +22,6 @@ void adjustprev(listint_t **list)
 		*list = (*list)->next;
 	}
 	*list = head;
-}
-void print_listr(const listint_t *list)
-{
-	int i;
-
-	i = 0;
-	while (list)
-	{
-
-		++i;
-		list = list->next;
-		if (list->next == NULL)
-			break;
-	}
-	i = 0;
-
-	while (list)
-	{
-		if (i > 0)
-			printf(", ");
-		printf("%d", list->n);
-		++i;
-		list = list->prev;
-	}
-	printf("\n");
 }
 
 /**
@@ -63,6 +42,7 @@ void link(listint_t **list, listint_t *pre, listint_t *next)
 
 /**
  * permute - swap two elements
+ * @list: list
  *@e1: first
  *@e2: second
  */
@@ -101,34 +81,7 @@ void permute(listint_t **list, listint_t **e1, listint_t **e2)
 	}
 	adjustprev(list);
 }
-/**
- * permute - swap two elements
- *@e1: first
- *@e2: second
- */
-void permute2(listint_t **list, listint_t **e1, listint_t **e2)
-{
-	listint_t *o1, *o2, *n1, *n2, *p2;
-	o1 = *e1;
-	o2 = *e2;
-	n2 = (*e2)->next;
-	n1 = (*e1)->next;
-	p2 = (*e2)->prev;
 
-	(*e1)->prev->next = o2;
-	(*e2)->next = n1;
-	(*e2)->prev->next = o1;
-	(o1)->next = n2;
-
-	(*e1)->prev = (*e2)->prev;
-	(*e2)->prev = p2;
-	printf("e1(%d)->prev = %d\n", (*e1)->n, (*e1)->prev->n);
-	printf("e1->next = %d\n", (*e1)->next->n);
-	printf("e2(%d)->prev = %d\n", (*e2)->n, (*e2)->prev->n);
-	printf("e2->next = %d\n", (*e2)->next->n);
-	if (!(*e2)->prev)
-		*list = *e2;
-}
 /**
  * insertion_sort_list - sort list using insertion algo
  * @list: list
@@ -150,6 +103,7 @@ void insertion_sort_list(listint_t **list)
 				if (lj->n < lj->prev->n)
 				{
 					listint_t *t = lj->prev;
+
 					permute(list, &(lj->prev), &lj);
 					print_list(*list);
 					lj = t;
