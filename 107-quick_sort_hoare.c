@@ -29,7 +29,7 @@ int partition(int A[], size_t size, int lo, int hi)
 {
 
 	int pivot = A[hi];
-	int j, i = lo - 1;
+	size_t j, i = lo - 1;
 
 	j = hi + 1;
 
