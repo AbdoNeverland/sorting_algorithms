@@ -44,7 +44,7 @@ int partition(int A[], size_t size, int lo, int hi)
 			j = j - 1;
 		} while (A[j] > pivot);
 
-		if (i > j)
+		if (i >= j)
 			return (j);
 		if (A[i] > A[j])
 			swap(A, size, &A[i], &A[j]);
