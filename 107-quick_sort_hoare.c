@@ -25,11 +25,11 @@ void swap(int *array, size_t size, int *a, int *b)
  * @hi: second
  * Return: int
  */
-int partition(int A[], size_t size, long int lo, long int hi)
+int partition(int A[], size_t size, size_t lo, size_t hi)
 {
 
 	int pivot = A[hi];
-	long int j, i = lo - 1;
+	size_t j, i = lo - 1;
 
 	j = hi + 1;
 
@@ -58,11 +58,11 @@ int partition(int A[], size_t size, long int lo, long int hi)
  * @lo: first
  * @hi: second
  */
-void quicksort(int A[], size_t size, long int lo, long int hi)
+void quicksort(int A[], size_t size, size_t lo, size_t hi)
 {
-	long int p;
+	size_t p;
 
-	if (lo >= 0 && hi >= 0 && lo < hi)
+	if (lo < hi)
 	{
 		p = partition(A, size, lo, hi);
 		quicksort(A, size, lo, p);
