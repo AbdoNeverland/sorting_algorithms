@@ -76,5 +76,7 @@ void quicksort(int A[], size_t size, int lo, int hi)
  */
 void quick_sort_hoare(int *array, size_t size)
 {
+	if (!array || size <= 1)
+	return;
 	quicksort(array, size, 0, size - 1);
 }
