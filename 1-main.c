@@ -32,7 +32,31 @@ listint_t *create_listint(const int *array, size_t size)
     }
     return (list);
 }
+void print_listr(const listint_t *list)
+{
+    
+	int i;
 
+	i = 0;
+	while (list)
+	{
+		++i;
+		list = list->next;
+        if (list->next == NULL)
+        break;
+	}
+    i = 0;
+	while (list)
+	{
+		if (i > 0)
+			printf(", ");
+		printf("%d", list->n);
+		++i;
+		list = list->prev;
+
+	}
+	printf("\n");
+}
 /**
  * main - Entry point
  *
@@ -41,14 +65,26 @@ listint_t *create_listint(const int *array, size_t size)
 int main(void)
 {
     listint_t *list;
-    int array[] = {0,2};
+    int array[] = {19, 48, 99, 71, 13, 52, 96, 73, 86, 7};
     size_t n = sizeof(array) / sizeof(array[0]);
 
     list = create_listint(array, n);
     if (!list)
         return (1);
     print_list(list);
+     /*print_listr(list);*/
     printf("\n");
+    /*permute(&list, &list->next->next, &list->next->next->next);
+   print_list(list);print_listr(list);
+   permute(&list, &list, &list->next->next->next);
+   print_list(list);print_listr(list);
+   permute(&list, &list, &list->next);*/
+   print_list(list);
+   /*print_listr(list);*/
+  
+   
+
+
     insertion_sort_list(&list);
     printf("\n");
     print_list(list);
