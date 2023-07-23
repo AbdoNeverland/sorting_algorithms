@@ -46,10 +46,9 @@ int partition(int A[], size_t size, int lo, int hi)
 
 		if (i > j)
 			return (j);
-		if (A[i] > A[j])
+		else
 			{
 				swap(A, size, &A[i], &A[j]);
-				
 			}
 	}
 }
