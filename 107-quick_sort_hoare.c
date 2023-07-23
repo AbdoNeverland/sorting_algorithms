@@ -28,17 +28,18 @@ void swap(int *array, size_t size, int *a, int *b)
 int partition(int A[], size_t size, size_t lo, size_t hi)
 {
 
-	int pivot = A[hi];
+	long int pivot = A[hi];
 	size_t j, i = lo - 1;
 
 	j = hi + 1;
-
+/*printf("pivot = %ld\n",pivot);*/
 	while (1)
 	{
 
 		do {
 			i = i + 1;
-		} while (A[i] < pivot);
+			/*printf("*%ld: A[%ld]=%d < %ld\n", i,i,A[i],pivot);*/
+		} while (i < hi && A[i] < pivot);
 
 		do {
 			j = j - 1;
