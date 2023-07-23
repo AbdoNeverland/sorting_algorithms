@@ -46,6 +46,7 @@ int partition(int A[], size_t size, int lo, int hi)
 
 		if (i > j)
 			return (j);
+		if (A[i] != A[j])
 		swap(A, size, &A[i], &A[j]);
 	}
 }
@@ -75,7 +76,7 @@ void quicksort(int A[], size_t size, int lo, int hi)
  */
 void quick_sort_hoare(int *array, size_t size)
 {
-	if (!array || size <= 1)
+	if (array == NULL || size <= 1)
 	return;
 	quicksort(array, size, 0, size - 1);
 }
