@@ -38,7 +38,7 @@ int partition(int A[], size_t size, size_t lo, size_t hi)
 
 		do {
 			i = i + 1;
-			/*printf("*%ld: A[%ld]=%d < %ld\n", i,i,A[i],pivot);*/
+			/*printf(" *%ld: A[%ld]=%d < %ld\n", i,i,A[i],pivot);*/
 		} while (i < hi && A[i] < pivot);
 
 		do {
