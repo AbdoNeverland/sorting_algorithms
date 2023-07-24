@@ -48,6 +48,8 @@ void insertion_sort_list(listint_t **list)
 {
 	listint_t *li, *lj, *t;
 
+	if (!(*list) || !((*list)->next))
+		return;
 	li = *list;
 	while (li && li->next)
 	{
