@@ -1,85 +1,43 @@
 #include "sort.h"
 
 /**
- * adjustprev - it must be a better way
- * @list: list
- **/
-void adjustprev(listint_t **list)
-{
-
-	int i;
-	listint_t *head = *list, *last = NULL;
-
-	i = 0;
-
-	while (*list)
-	{
-
-		++i;
-		(*list)->prev = last;
-
-		last = *list;
-		*list = (*list)->next;
-	}
-	*list = head;
-}
-
-/**
- * link - align next to pre
- * @list: main list
- * @pre: previous
- * @next: next
- */
-void link(listint_t **list, listint_t *pre, listint_t *next)
-{
-	if (pre)
-		(pre)->next = next;
-	else
-		*list = next;
-	if (next)
-		(next)->prev = pre;
-}
-
-/**
- * permute - swap two elements
+ * permute - swap two nodes
  * @list: list
  *@e1: first
  *@e2: second
+ * Return: lower node
  */
-void permute(listint_t **list, listint_t **e1, listint_t **e2)
+listint_t *permute(listint_t **list, listint_t *e1, listint_t *e2)
 {
-	listint_t *n1, *n2, *p1, *p2, *o1, *o2;
+	listint_t *t;
 
-	o1 = *e1;
-	o2 = *e2;
-	n2 = (*e2)->next;
-	n1 = (*e1)->next;
-	p1 = (*e1)->prev;
-	p2 = (*e2)->prev;
-	if ((*e1)->next != *e2)
+	if (e1 == e2 || !(e1) || !(e2))
+		return (e1);
+
+	if ((e1)->prev)
+		(e1)->prev->next = (e2);
+	else
+		*list = e2;
+	t = e2->next;
+	if (e1->next != e2)
 	{
-		link(list, p1, *e2);
-		link(list, o2, n1);
-		link(list, p2, o1);
-		link(list, o1, n2);
+		(e2)->next = e1->next;
+		e2->prev->next = e1;
 	}
 	else
-	{
-		listint_t *t;
-
-		t = (*e1)->prev;
-		(o1)->prev = o2;
-		(*e2)->prev = t;
-		if (t)
-			t->next = o2;
-		else
-			*list = o2;
-
-		t = (o2)->next;
-		(o2)->next = o1;
-		(o1)->next = t;
-	}
-	adjustprev(list);
+		e2->next = e1;
+	e1->next = t;
+	if (t)
+		t->prev = e1;
+	t = e2->prev;
+	e2->prev = e1->prev;
+	e1->prev = t;
+	if (e1->next)
+		e1->next->prev = e1;
+	if (e2->next)
+		e2->next->prev = e2;
+	print_list(*list);
+	return (e2);
 }
 
 /**
@@ -88,33 +46,27 @@ void permute(listint_t **list, listint_t **e1, listint_t **e2)
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *li, *lj;
+	listint_t *li, *lj, *t;
 
 	li = *list;
 	while (li && li->next)
 	{
 		if (li->n > li->next->n)
 		{
-			lj = li->next;
-			permute(list, &li, &(li->next));
-			print_list(*list);
-			while (lj && lj->prev)
+			t = permute(list, li, (li->next));
+			lj = t->prev;
+			while (lj)
 			{
-				if (lj->n < lj->prev->n)
+				if (t->n < lj->n)
 				{
-					listint_t *t = lj->prev;
-
-					permute(list, &(lj->prev), &lj);
-					print_list(*list);
-					lj = t;
+					t = permute(list, lj, t);
+					lj = t->prev;
 				}
 				else
 					lj = lj->prev;
 			}
 		}
 		else
-		{
 			li = li->next;
-		}
 	}
 }

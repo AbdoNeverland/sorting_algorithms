@@ -17,7 +17,7 @@ void swapp( int *a, int *b)
  */
 int main(void)
 {
-    int array[] = {INT_MAX, 48, 99, 71, 13, 52, 96, 73, 86, 7};
+    int array[] = {INT_MAX, 48, 99, 71, INT_MIN, 52, 96, 73, 86, 7};
     size_t n = sizeof(array) / sizeof(array[0]);
     int a =INT_MIN,b=INT_MAX;
 printf("min=%d  max=%d\n", a,b);

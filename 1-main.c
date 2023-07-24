@@ -32,31 +32,7 @@ listint_t *create_listint(const int *array, size_t size)
     }
     return (list);
 }
-void print_listr(const listint_t *list)
-{
-    
-	int i;
 
-	i = 0;
-	while (list)
-	{
-		++i;
-		list = list->next;
-        if (list->next == NULL)
-        break;
-	}
-    i = 0;
-	while (list)
-	{
-		if (i > 0)
-			printf(", ");
-		printf("%d", list->n);
-		++i;
-		list = list->prev;
-
-	}
-	printf("\n");
-}
 /**
  * main - Entry point
  *
@@ -72,19 +48,7 @@ int main(void)
     if (!list)
         return (1);
     print_list(list);
-     /*print_listr(list);*/
     printf("\n");
-    /*permute(&list, &list->next->next, &list->next->next->next);
-   print_list(list);print_listr(list);
-   permute(&list, &list, &list->next->next->next);
-   print_list(list);print_listr(list);
-   permute(&list, &list, &list->next);*/
-   print_list(list);
-   /*print_listr(list);*/
-  
-   
-
-
     insertion_sort_list(&list);
     printf("\n");
     print_list(list);

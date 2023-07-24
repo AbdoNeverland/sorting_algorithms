@@ -27,5 +27,5 @@ void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
 void bitonic_sort(int *array, size_t size);
 void quick_sort_hoare(int *array, size_t size);
-listint_t *permute(listint_t **list, listint_t **e1, listint_t **e2);
+listint_t *permute(listint_t **list, listint_t *e1, listint_t *e2);
 #endif
